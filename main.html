@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Año Nuevo 2025 - ZTEL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            position: absolute;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .gift-box {
+            background: linear-gradient(145deg, #1e40af, #1e3a8a);
+            border-radius: 20px;
+            padding: 60px 40px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .gift-box.opened {
+            transform: scale(0.95);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .ribbon {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 80px;
+            background: #dc2626;
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+        }
+
+        .ribbon::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: #dc2626;
+            border-radius: 50%;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: #1e40af;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .gift-text {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .gift-subtitle {
+            color: #ef4444;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .open-btn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(220, 38, 38, 0.4);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .open-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.6);
+            background: #b91c1c;
+        }
+
+        .open-btn:active {
+            transform: translateY(-1px);
+            background: #991b1b;
+        }
+
+        .letter-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .letter-container.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .letter {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #dc2626;
+        }
+
+        .letter-header h1 {
+            color: #1e40af;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .emoji {
+            font-size: 40px;
+            display: inline-block;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .letter-body {
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .letter-body p {
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #1e40af;
+            font-weight: bold;
+        }
+
+        .signature {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .signature p {
+            color: #6b7280;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .signature strong {
+            color: #1e40af;
+            font-size: 18px;
+        }
+
+        .close-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .close-btn:hover {
+            background: #dc2626;
+            transform: scale(1.05);
+        }
+
+        .close-btn:active {
+            background: #b91c1c;
+            transform: scale(1);
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #dc2626;
+            border-radius: 50%;
+            animation: sparkle 1.5s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gift-box {
+                padding: 50px 25px 30px;
+            }
+
+            .logo {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+
+            .gift-text {
+                font-size: 24px;
+            }
+
+            .gift-subtitle {
+                font-size: 16px;
+            }
+
+            .letter {
+                padding: 30px 20px;
+            }
+
+            .letter-header h1 {
+                font-size: 26px;
+            }
+
+            .letter-body {
+                font-size: 15px;
+            }
+
+            .open-btn {
+                padding: 12px 30px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Caja de Regalo -->
+        <div class="gift-box" id="giftBox">
+            <div class="ribbon"></div>
+            <div class="logo">ZTEL</div>
+            <h2 class="gift-text">¡Feliz Año Nuevo!</h2>
+            <p class="gift-subtitle">Te desea ZTEL</p>
+            <button class="open-btn" id="openBtn">✨ Abrir Regalo ✨</button>
+        </div>
+
+        <!-- Carta -->
+        <div class="letter-container" id="letterContainer">
+            <div class="letter">
+                <div class="letter-header">
+                    <h1>Feliz Año Nuevo <span class="emoji">🎉</span></h1>
+                </div>
+                <div class="letter-body">
+                    <p>Gracias por su <span class="highlight">compromiso</span>, <span class="highlight">esfuerzo</span> y <span class="highlight">trabajo en equipo</span>.</p>
+                    <p>Cada logro fue posible gracias a ustedes.</p>
+                    <p>Que este nuevo año venga lleno de <span class="highlight">oportunidades</span>, <span class="highlight">crecimiento</span> y <span class="highlight">éxitos</span> para todos.</p>
+                    <p><strong>¡Vamos por un gran año! 🚀</strong></p>
+                </div>
+                <div class="signature">
+                    <p>Con aprecio,</p>
+                    <strong>Javier Wilson Gómez</strong>
+                </div>
+                <button class="close-btn" id="closeBtn">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Crear confeti
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = ['#dc2626', '#ef4444', '#1e40af', '#3b82f6', '#ffffff'][Math.floor(Math.random() * 5)];
+                    confetti.style.animationDelay = Math.random() * 3 + 's';
+                    confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 5000);
+                }, i * 50);
+            }
+        }
+
+        // Crear estrellas brillantes
+        function createSparkles() {
+            const letter = document.querySelector('.letter');
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 1.5 + 's';
+                letter.appendChild(sparkle);
+            }
+        }
+
+        function openGift() {
+            document.getElementById('giftBox').classList.add('opened');
+            createConfetti();
+            
+            setTimeout(() => {
+                document.getElementById('letterContainer').classList.add('show');
+                createSparkles();
+            }, 300);
+        }
+
+        function closeCard() {
+            document.getElementById('letterContainer').classList.remove('show');
+            
+            setTimeout(() => {
+                document.getElementById('giftBox').classList.remove('opened');
+            }, 600);
+        }
+
+        // Confeti inicial al cargar
+        window.addEventListener('load', () => {
+            createConfetti();
+            
+            // Event listeners para los botones
+            document.getElementById('openBtn').addEventListener('click', openGift);
+            document.getElementById('closeBtn').addEventListener('click', closeCard);
+        });
+    </script>
+</body>
+</html>
